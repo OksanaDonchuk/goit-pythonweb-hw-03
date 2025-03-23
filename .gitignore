@@ -1,3 +1,6 @@
+# PyCharm
+*~
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -5,6 +8,19 @@ __pycache__/
 
 # C extensions
 *.so
+
+# PyCharm project files
+.idea/
+
+# Docker
+*.dockerignore
+.docker/
+docker-compose.override.yml
+*.pid
+
+# Virtualenv
+.venv
+poetry.lock
 
 # Distribution / packaging
 .Python
