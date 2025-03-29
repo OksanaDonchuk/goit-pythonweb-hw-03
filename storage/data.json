@@ -10,5 +10,13 @@
     "2025-03-23 20:30:24.607834": {
         "username": "Docker-test",
         "message": "Message with docker"
+    },
+    "2025-03-29 19:42:34.440857": {
+        "username": "test",
+        "message": "Hi"
+    },
+    "2025-03-29 20:18:49.361851": {
+        "username": "Іра",
+        "message": "Привіт"
     }
 }

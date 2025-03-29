@@ -40,9 +40,12 @@ class RequestHandler(BaseHTTPRequestHandler):
             case "/message":
                 self.serve_html("message.html")
             case _:
-                file_path = BASE_DIR / route[1:]
-                if file_path.exists():
-                    self.serve_static(file_path)
+                if route.startswith("/static/") or route.startswith("/img/"):
+                    file_path = BASE_DIR / route[1:]
+                    if file_path.exists():
+                        self.serve_static(file_path)
+                    else:
+                        self.serve_html("error.html", 404)
                 else:
                     self.serve_html("error.html", 404)
 
@@ -59,8 +62,8 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def serve_html(self, filename: str, status_code: int = 200) -> None:
-        """Serve an HTML file from the base directory."""
-        file_path = BASE_DIR / filename
+        """Serve an HTML file from the templates directory."""
+        file_path = BASE_DIR / "templates" / filename
         if file_path.exists():
             self.send_response(status_code)
             self.send_header("Content-type", "text/html")
@@ -101,7 +104,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         except (FileNotFoundError, json.JSONDecodeError):
             messages = {}
 
-        template_path = BASE_DIR / "read.html"
+        template_path = BASE_DIR / "templates" / "read.html"
         template = Template(template_path.read_text(encoding="utf-8"))
         rendered_html = template.render(messages=messages)
 
